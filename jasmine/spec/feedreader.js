@@ -66,17 +66,25 @@ $(function() {
         it('Menu Element is Hidden', function() {
             expect(document.body.className).toEqual('menu-hidden');
         });
-    });
 
-         /* TODO: Write a test that ensures the menu changes
+         /* DONE: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
 
         it('Menu toggles visibility', function() {
-
+            //trigger click
+            var menulink = document.getElementById('menuicon');
+            menulink.click();
+            expect(document.body.className).not.toEqual('menu-hidden');
+            //trigger click agin
+            menulink.click();
+            expect(document.body.className).toEqual('menu-hidden');
         });
+    });
+
+
 
     /* DONE: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
@@ -101,3 +109,5 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 }());
+
+
