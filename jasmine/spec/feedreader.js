@@ -4,16 +4,16 @@
  * all of the tests that will be run against your application.
  */
 
-/* We're placing all of our tests within the $() function,
+/* We"re placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
+ * to ensure they don"t run until the DOM is ready.
  */
 $(function() {
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe("RSS Feeds", function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('Are defined.', function() {
+        it("Are defined.", function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -32,11 +32,11 @@ $(function() {
          */
 
         // Loop through the allFeeds array to check if each has a URL defined.
-        it('URLs are defined.', function() {
+        it("URLs are defined.", function() {
             for (var i = 0; i < allFeeds.length; i++) {
             expect(allFeeds[i].url).toBeDefined();
             expect(allFeeds[i].url).not.toBeNull();
-            };
+            }
         });
 
         /* DONE: Write a test that loops through each feed
@@ -45,27 +45,27 @@ $(function() {
          */
 
         // Loop through the allFeeds array to check if each has a name defined.
-        it('Names are defined.', function() {
+        it("Names are defined.", function() {
             for (var i = 0; i < allFeeds.length; i++) {
             expect(allFeeds[i].name).toBeDefined();
             expect(allFeeds[i].name).not.toBeNull();
-            };
+            }
         });
     });
 
     /* DONE: Write a new test suite named "The menu" */
 
-    describe('The Menu', function() {
+    describe("The Menu", function() {
 
         /* DONE: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
+         * hidden by default. You"ll have to analyze the HTML and
+         * the CSS to determine how we"re performing the
          * hiding/showing of the menu element.
          */
 
-        // Check to see if the menu's class is set to to 'menu-hidden' to determine if it is hidden.
-        it('Menu element is hidden.', function() {
-            expect(document.body.className).toEqual('menu-hidden');
+        // Check to see if the menu"s class is set to to "menu-hidden" to determine if it is hidden.
+        it("Menu element is hidden.", function() {
+            expect(document.body.className).toEqual("menu-hidden");
         });
 
          /* DONE: Write a test that ensures the menu changes
@@ -74,23 +74,23 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
-        it('Menu toggles visibility.', function() {
+        it("Menu toggles visibility.", function() {
             // get the menu link
-            var menulink = document.getElementById('menuicon');
+            var menulink = document.getElementById("menuicon");
             // trigger click on the menu
             menulink.click();
             // check the class on the menu to determine if it is displayed or not
-            expect(document.body.className).not.toEqual('menu-hidden');
+            expect(document.body.className).not.toEqual("menu-hidden");
             //trigger click agin
             menulink.click();
             // check the class on the menu to determine if it is displayed or not
-            expect(document.body.className).toEqual('menu-hidden');
+            expect(document.body.className).toEqual("menu-hidden");
         });
     });
 
     /* DONE: Write a new test suite named "Initial Entries" */
 
-    describe('Initial Entries', function() {
+    describe("Initial Entries", function() {
 
         // Wait for the initial load to complete before running the test
         beforeEach(function(done) {
@@ -103,11 +103,11 @@ $(function() {
         // * function is called and completes its work, there is at least
         // * a single .entry element within the .feed container.
         // * Remember, loadFeed() is asynchronous so this test will require
-        // * the use of Jasmine's beforeEach and asynchronous done() function.
+        // * the use of Jasmine"s beforeEach and asynchronous done() function.
 
-        it ('Should have at least one entry.', function(done) {
+        it ("Should have at least one entry.", function(done) {
         // grab all the elements for the feed list into an array
-            var entries = document.getElementsByClassName('entry-link');
+            var entries = document.getElementsByClassName("entry-link");
         // check if the array length is > 0
             expect(entries.length).not.toBe(0);
             done();
@@ -115,7 +115,7 @@ $(function() {
     });
 
     /* DONE: Write a new test suite named "New Feed Selection" */
-    describe('New Feed Selection', function() {
+    describe("New Feed Selection", function() {
         // defined variables to hold before/after feed values
         var entriesoriginal;
         var entriesnew;
@@ -127,9 +127,9 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(0, function() {
-                entriesoriginal = $('.feed').html();
+                entriesoriginal = $(".feed").html();
                 loadFeed(1, function() {
-                    entriesnew = $('.feed').html();
+                    entriesnew = $(".feed").html();
                     done();
                 });
             });
@@ -140,7 +140,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        it ('Feed actually changes.', function() {
+        it ("Feed actually changes.", function() {
             expect(entriesoriginal).not.toEqual(entriesnew);
         });
     });
