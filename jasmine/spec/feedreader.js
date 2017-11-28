@@ -97,42 +97,46 @@ $(function() {
             });
         });
 
-             // DONE: Write a test that ensures when the loadFeed
-             // * function is called and completes its work, there is at least
-             // * a single .entry element within the .feed container.
-             // * Remember, loadFeed() is asynchronous so this test will require
-             // * the use of Jasmine's beforeEach and asynchronous done() function.
+        // DONE: Write a test that ensures when the loadFeed
+        // * function is called and completes its work, there is at least
+        // * a single .entry element within the .feed container.
+        // * Remember, loadFeed() is asynchronous so this test will require
+        // * the use of Jasmine's beforeEach and asynchronous done() function.
 
         it ('should have at least one entry', function(done) {
             var entries = document.getElementsByClassName('entry-link');
-            console.log('entries = ' + entries + ' length = ' + entries.length);
             expect(entries.length).not.toBe(0);
+            console.log(entries);
             done();
         });
     });
 
 
-
-    /* DONE: Write a new test suite named "New Feed Selection" */
+    // /* DONE: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
 
+        var entriesOriginal = document.getElementsByClassName('entry-link');
+        console.log(entriesOriginal);
+        // call the loadFeed function and wait for it to complete loading.
+        // capture the array of entries from the initial loadFeed call
+
+
         beforeEach(function(done) {
-            loadFeed(0, function() {
+            loadFeed(1, function() {
                 done();
             });
         });
 
-        var entriesOriginal = document.getElementsByClassName('entry-link');
-        console.log(entriesOriginal);
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
 
-        it ('should have at least one entry', function(done) {
-            var entries = document.getElementsByClassName('entry-link');
-            expect(entries.length).not.toBe(0);
+        it ('feed actually changes', function(done) {
+            var entriesNew = document.getElementsByClassName('entry-link');
+            console.log(entriesNew);
+            expect(entriesOriginal).not.toEqual(entriesNew);
             done();
         });
     });
