@@ -115,15 +115,16 @@ $(function() {
     // /* DONE: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
 
-        var entriesOriginal = document.getElementsByClassName('entry-link');
-        console.log(entriesOriginal);
-        // call the loadFeed function and wait for it to complete loading.
-        // capture the array of entries from the initial loadFeed call
-
+        var entriesoriginal;
+        var entriesnew;
 
         beforeEach(function(done) {
-            loadFeed(1, function() {
-                done();
+            loadFeed(0, function() {
+                entriesoriginal = $('.feed').html();
+                loadFeed(1, function() {
+                    entriesnew = $('.feed').html();
+                    done();
+                });
             });
         });
 
@@ -133,11 +134,9 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-        it ('feed actually changes', function(done) {
-            var entriesNew = document.getElementsByClassName('entry-link');
-            console.log(entriesNew);
-            expect(entriesOriginal).not.toEqual(entriesNew);
-            done();
+        it ('feed actually changes', function() {
+            expect(entriesoriginal).not.toEqual(entriesnew);
+            // done();
         });
     });
 
