@@ -35,7 +35,7 @@ $(function() {
         it("URLs are defined.", function() {
             for (var i = 0; i < allFeeds.length; i++) {
             expect(allFeeds[i].url).toBeDefined();
-            expect(allFeeds[i].url).not.toBeNull();
+            expect(allFeeds[i].url.length).toBeGreaterThan(0);
             }
         });
 
@@ -48,7 +48,7 @@ $(function() {
         it("Names are defined.", function() {
             for (var i = 0; i < allFeeds.length; i++) {
             expect(allFeeds[i].name).toBeDefined();
-            expect(allFeeds[i].name).not.toBeNull();
+            expect(allFeeds[i].name.length).toBeGreaterThan(0);
             }
         });
     });
@@ -65,7 +65,7 @@ $(function() {
 
         // Check to see if the menu"s class is set to to "menu-hidden" to determine if it is hidden.
         it("Menu element is hidden.", function() {
-            expect(document.body.className).toEqual("menu-hidden");
+            expect($( "body" ).hasClass( "menu-hidden" )).toBe(true);
         });
 
          /* DONE: Write a test that ensures the menu changes
@@ -77,14 +77,14 @@ $(function() {
         it("Menu toggles visibility.", function() {
             // get the menu link
             var menulink = document.getElementById("menuicon");
-            // trigger click on the menu
+            // trigger click on the menu to show it
             menulink.click();
-            // check the class on the menu to determine if it is displayed or not
-            expect(document.body.className).not.toEqual("menu-hidden");
-            //trigger click agin
+            // check the class on the menu (should not be .menu-hidden) to determine if it is displayed
+            expect($( "body" ).hasClass( "menu-hidden" )).not.toBe(true);
+            //trigger click again to close it
             menulink.click();
-            // check the class on the menu to determine if it is displayed or not
-            expect(document.body.className).toEqual("menu-hidden");
+            // check the class on the menu (should be .menu-hidden) to determine if it is hidden
+            expect($( "body" ).hasClass( "menu-hidden" )).toBe(true);
         });
     });
 
@@ -105,12 +105,9 @@ $(function() {
         // * Remember, loadFeed() is asynchronous so this test will require
         // * the use of Jasmine"s beforeEach and asynchronous done() function.
 
-        it ("Should have at least one entry.", function(done) {
-        // grab all the elements for the feed list into an array
-            var entries = document.getElementsByClassName("entry-link");
-        // check if the array length is > 0
-            expect(entries.length).not.toBe(0);
-            done();
+        it ("Should have at least one entry.", function() {
+        // check if the array length of all .entry children is > 0
+            expect($( ".feed .entry" ).length).not.toBe(0);
         });
     });
 
